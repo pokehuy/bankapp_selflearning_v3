@@ -223,3 +223,31 @@ document.querySelector('.nav').addEventListener('click', function(e){
 },true) // giá trị thứ 3 của function addEventListener: true -> function sẽ bắt event ở capturing phase, false -> function sẽ bắt event ở bubbling phase
 
 */
+
+const h1 = document.querySelector('h1');
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes);
+console.log(h1.children);
+h1.firstElementChild.style.color = 'white';
+h1.lastElementChild.style.color = 'orange';
+[...h1.children].forEach(el => console.log(el));
+
+console.log(h1.previousElementSibling); // không có, vì h1 là element đầu tiên của thẻ cha của nó
+console.log(h1.nextElementSibling); // chỉ lấy element
+console.log(h1.previousSibling); // lấy hết không cứ element
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement);
+console.log(h1.parentNode);
+
+// closest -> giống querySelector nhưng thay vì chọn các thẻ con, chọn các thẻ cha
+console.log(h1.closest('header'));
+console.log(h1.closest('.header__title'));
+console.log(h1.closest('highlight')); // không có vì các thẻ cha không có class highlight
+h1.closest('h1').style.backgroundColor = 'var(--gradient-primary)';
+h1.closest('header').style.background = 'var(--gradient-secondary)';
+
+console.log(h1.parentElement.children);
+[...h1.parentElement.children].forEach(el => function(el){
+  if(el !== h1) el.style.transform = 'scale(0.5)';
+})
